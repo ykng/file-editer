@@ -1,0 +1,4 @@
+hatto 1
+sama 2
+fsa 4
+fsa 3

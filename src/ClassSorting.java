@@ -1,5 +1,8 @@
 /**
  * Created by Kazuki on 2016/06/06.
+ *  テスト実行するときはRun→Edit ConfigurationsからProgram Argumentsの項目で
+ *  testdata/testdata.txt test-output/class0.txt test-output/class1.txt ～(略)～ test-output/class6.txt
+ *  と指定する
  */
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,10 +10,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Main {
+public class ClassSorting {
     public static void main(String[] args)throws Exception{
         try{
+            //第1引数：読込ファイル名
             File readfile = new File(args[0]);
+            //第2～7引数:出力ファイル名
             File[] writefile = new File[7];
             for(int i=0; i<7; i++){
                 writefile[i] = new File(args[i+1]);
@@ -23,7 +28,7 @@ public class Main {
             }
 
             int i = 0;
-            int[] str = new int[10000];
+            int[] str = new int[1000];
 
             while((str[i] = fr.read()) != -1){
                 if(str[i] == '\n'){
