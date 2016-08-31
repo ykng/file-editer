@@ -1,5 +1,10 @@
 /**
- * Created by Kazuki on 2016/06/06.
+ * tgls-output-file editer for preparing learning data.
+ *
+ * 第1引数:読込ファイル名
+ * 第2引数:出力ファイル名(.arff)
+ * 第3引数:実行時間
+ *
  */
 import java.io.*;
 
@@ -9,9 +14,6 @@ public class FileCutting {
         BufferedReader br = null;
         FileWriter fw = null;
         try{
-            //第1引数:読込ファイル名
-            //第2引数:出力ファイル名(.arff)
-            //第3引数:実行時間
             File readfile = new File(args[0]);
             File writefile = new File(args[1]);
             fr = new FileReader(readfile);
