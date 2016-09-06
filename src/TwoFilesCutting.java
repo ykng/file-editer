@@ -3,16 +3,15 @@ import java.io.*;
 public class TwoFilesCutting{
     public static void main(String[] args) throws Exception {
         try (
-            FileReader fr1 = new FileReader(new File(args[0]));
-            FileReader fr2 = new FileReader(new File(args[1]));
-            BufferedReader br1 = new BufferedReader(fr1);
-            BufferedReader br2 = new BufferedReader(fr2);
-            FileWriter fw = new FileWriter(new File(args[2]), true)
+            BufferedReader brLoad1 = new BufferedReader(new FileReader(new File(args[0])));
+            BufferedReader brLoad2 = new BufferedReader(new FileReader(new File(args[1])));
+            BufferedReader brExeTime = new BufferedReader((new FileReader(new File(args[2]))));
+            FileWriter fw = new FileWriter(new File(args[3]), true)
         ){
-            String exeTime = args[3];
+            String exeTime = extractExeTime(brExeTime);
 
-            writeData(br1, fw);
-            writeData(br2, fw);
+            writeData(brLoad1, fw);
+            writeData(brLoad2, fw);
 
             fw.write(exeTime);
             fw.write('\n');
@@ -20,6 +19,23 @@ public class TwoFilesCutting{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static String extractExeTime(BufferedReader br) throws  Exception {
+        String line;
+        String exeTime="";
+
+        while ((line = br.readLine()) != null) {
+            if (line.startsWith("real")) {
+                String stringTime = line.substring(5);
+                int intTime = (int) Double.parseDouble(stringTime);
+                exeTime = String.valueOf(intTime);
+
+                break;
+            }
+        }
+
+        return exeTime;
     }
 
     public static void writeData(BufferedReader br, FileWriter fw) throws Exception {

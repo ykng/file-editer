@@ -1,7 +1,7 @@
 /**
  * Created by Kazuki on 2016/06/06.
  *  テスト実行するときはRun→Edit ConfigurationsからProgram Argumentsの項目で
- *  testdata/testdata.txt test-output/class0.txt test-output/class1.txt ～(略)～ test-output/class6.txt
+ *  testdata/CS.txt test-output/class0.txt test-output/class1.txt ～(略)～ test-output/class6.txt
  *  と指定する
  */
 import java.io.File;
