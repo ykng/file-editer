@@ -11,7 +11,7 @@ public class TFCForSlave {
         try (
                 BufferedReader brLoad1 = new BufferedReader(new FileReader(new File(args[0])));
                 BufferedReader brLoad2 = new BufferedReader(new FileReader(new File(args[1])));
-                FileWriter fw = new FileWriter(new File(args[3]), true)
+                FileWriter fw = new FileWriter(new File(args[2]), true)
         ){
             writeData(brLoad1, fw);
             writeData(brLoad2, fw);
