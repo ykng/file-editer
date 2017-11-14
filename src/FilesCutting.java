@@ -4,15 +4,19 @@ public class FilesCutting{
     public static void main(String[] args) throws Exception {
         try (
                 BufferedReader brLoad = new BufferedReader(new FileReader(new File(args[0])));
-                BufferedReader brExeTime = new BufferedReader((new FileReader(new File(args[1]))));
+                BufferedReader brReport = new BufferedReader((new FileReader(new File(args[1]))));
                 FileWriter fw = new FileWriter(new File(args[2]), true)
         ){
-            String exeTime = extractTime(brExeTime);
+            String lastLine = extractLastLine(brReport);
 
+            // 入力データ量
+            writeInputDataAmount(lastLine, fw);
+
+            // トレースデータ
             writeData(brLoad, fw);
 
-            fw.write(exeTime);
-            fw.write('\n');
+            // 実行時間
+            writeTime(lastLine, fw);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,16 +41,26 @@ public class FilesCutting{
 //        return exeTime;
 //    }
 
-    // hibench.reportを利用する場合
-    private static String extractTime(BufferedReader br) throws Exception{
+    // hibench.reportの最終行を抽出
+    public static String extractLastLine(BufferedReader br) throws Exception {
         String line = "";
-        String nextline;
+        String nextLine;
 
-        while ((nextline = br.readLine()) != null) {
-            line = nextline;
+        while ((nextLine = br.readLine()) != null) {
+            line = nextLine;
         }
 
-        return line.split("\\s+")[4].toString();
+        return line;
+    }
+
+    private static void writeTime(String lastLine, FileWriter fw) throws Exception{
+        fw.write(lastLine.split("\\s+")[4].toString());
+        fw.write('\n');
+    }
+
+    private static void writeInputDataAmount(String lastLine, FileWriter fw) throws Exception {
+        fw.write(lastLine.split("\\s+")[3].toString());
+        fw.write(',');
     }
 
     public static void writeData(BufferedReader br, FileWriter fw) throws Exception {
