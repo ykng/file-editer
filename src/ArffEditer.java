@@ -5,8 +5,9 @@ public class ArffEditer {
         try (
                 BufferedReader brArff = new BufferedReader(new FileReader(new File(args[0])));
                 BufferedReader brTgls = new BufferedReader((new FileReader(new File(args[1]))));
-                BufferedWriter bw = new BufferedWriter(new FileWriter(new File(args[2])))
+                BufferedWriter bw = new BufferedWriter(new FileWriter(new File(args[2]), true))
         ){
+
             String tglsAverage = extractTglsAverage(brTgls);
             replace(bw, brArff, tglsAverage);
 
